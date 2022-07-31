@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./index.css";
+import { Keyboard } from "./Keyboard";
 
 const WORD_LENGTH = 5;
 
@@ -8,6 +9,14 @@ function App() {
   const [currentGuess, setCurrentGuess] = useState("");
   const [isOver, setIsOver] = useState(false);
   const [solution, setSolution] = useState("")
+
+  function dispatchKeyPress(key) {
+    console.log("called with", key)
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      'key': key,
+      'code': `Key${key.toUpperCase()}`
+  }));
+  }
 
   useEffect(() => {
 
@@ -27,13 +36,12 @@ function App() {
       if (isOver) {
         return;
       }
-
       const letter = event.key;
-      const code = event.keyCode;
+      console.log(letter)
 
       // check that keypressed is only a letter or backspace or enter
       if (
-        (code < 65 || code > 90) &&
+        (letter.match(/^[a-z]$/) === null) &&
         letter !== "Enter" &&
         letter !== "Backspace"
       )
@@ -80,6 +88,7 @@ function App() {
           );
         })}
       </div>
+      <Keyboard dispatch={dispatchKeyPress}></Keyboard>
     </div>
   );
 }
