@@ -11,7 +11,6 @@ function App() {
   const [solution, setSolution] = useState("")
 
   function dispatchKeyPress(key) {
-    console.log("called with", key)
     window.dispatchEvent(new KeyboardEvent('keydown', {
       'key': key,
       'code': `Key${key.toUpperCase()}`
@@ -37,7 +36,6 @@ function App() {
         return;
       }
       const letter = event.key;
-      console.log(letter)
 
       // check that keypressed is only a letter or backspace or enter
       if (
