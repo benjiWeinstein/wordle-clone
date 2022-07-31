@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./index.css";
 
 const WORD_LENGTH = 5;
-const SOLUTION = "KOITL";
 
 function App() {
   const [guesses, setGuesses] = useState(Array(6).fill(null));
