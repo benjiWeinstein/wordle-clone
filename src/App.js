@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 import { Keyboard } from "./Keyboard";
+import Line from "./Line";
 
 const WORD_LENGTH = 5;
 
@@ -10,11 +11,14 @@ function App() {
   const [isOver, setIsOver] = useState(false);
   const [solution, setSolution] = useState("")
 
-  function dispatchKeyPress(key) {
+  function dispatchKeyPress(e, key) {
+  
+
     window.dispatchEvent(new KeyboardEvent('keydown', {
       'key': key,
       'code': `Key${key.toUpperCase()}`
   }));
+
   }
 
   useEffect(() => {
@@ -32,6 +36,7 @@ function App() {
     window.addEventListener("keydown", handleType);
 
     function handleType(event) {
+
       if (isOver) {
         return;
       }
@@ -91,35 +96,5 @@ function App() {
   );
 }
 
-function Line({ guess, solution, currentIndex, index }) {
-  const getColor = (letter, ind, solution) => {
-    if (solution.charAt(ind) === letter) {
-      return " correct";
-    } else if (solution.includes(letter)) {
-      return " close";
-    } else {
-      return " wrong";
-    }
-  };
-
-  return (
-    <div className="line">
-      {Array(5)
-        .fill(null)
-        .map((_, ind) => {
-          const letter = guess[ind] ?? "";
-          const classname =
-            index < currentIndex
-              ? getColor(letter.toUpperCase(), ind, solution)
-              : "";
-          return (
-            <div key={ind} className={`box ${classname}`}>
-              {letter}
-            </div>
-          );
-        })}
-    </div>
-  );
-}
 
 export default App;

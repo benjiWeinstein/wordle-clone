@@ -15,35 +15,14 @@ code {
 
 .box {
   border: 2px solid rgb(84, 85, 84);
-  height: 70px;
-  width: 70px;
+  min-height: 50px;
+  min-width: 50px;
   display: flex;
   justify-content: center;
   flex-shrink: 1;
   align-items: center;  
 }
 
-@media only screen and (max-width: 600px) {
-.box {
-  border: 2px solid rgb(84, 85, 84);
-  height: 50px;
-  width: 50px;
-  display: flex;
-  justify-content: center;
-  flex-shrink: 1;
-  align-items: center;  
-}
-.line {
-  display: flex;
-  flex-direction: row;
-  gap: 0.4em;
-  margin-top: 0.4em;
-  text-transform: uppercase;
-  font-size: large;
-  font-weight: bold;
-
-}
-}
 
 .line {
   display: flex;
@@ -58,7 +37,9 @@ code {
 
 .App {
   background-color: rgba(0, 0, 0, 0.903);
-  height: 100vh;
+  min-height: 100vh;
+  padding: 5px;
+  min-width: fit-content;
 }
 
 .board{
@@ -66,6 +47,7 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: fit-content;
 }
 
 .correct {
@@ -111,3 +93,5 @@ code {
   cursor: pointer;
   text-transform: uppercase;
 }
+
+
